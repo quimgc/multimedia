@@ -40,6 +40,7 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
@@ -54,6 +55,7 @@
       fixed
       app
     >
+
       <v-list>
         <v-list-tile @click="right = !right">
           <v-list-tile-action>
@@ -62,30 +64,40 @@
           <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
         </v-list-tile>
       </v-list>
+
     </v-navigation-drawer>
+    <multimedia-component></multimedia-component>
+
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
+
+    <share-component></share-component>
+
   </v-app>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  },
-  name: 'App'
+  import ShareComponent from './components/ShareComponent.vue'
+  import MultimediaComponent from './components/MultimediaComponent.vue'
+
+  export default {
+    components: { ShareComponent, MultimediaComponent },
+    data () {
+      return {
+        clipped: false,
+        drawer: true,
+        fixed: false,
+        items: [{
+          icon: 'bubble_chart',
+          title: 'Inspire'
+        }],
+        miniVariant: false,
+        right: true,
+        rightDrawer: false,
+        title: 'Vuetify.js'
+      }
+    },
+    name: 'App'
 }
 </script>
