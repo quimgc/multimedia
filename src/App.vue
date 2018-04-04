@@ -14,6 +14,7 @@
           value="true"
           v-for="(item, i) in items"
           :key="i"
+          :to="item.path"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -67,8 +68,7 @@
 
     </v-navigation-drawer>
 
-    <clock-component></clock-component>
-    <multimedia-component></multimedia-component>
+    <!--<multimedia-component></multimedia-component>-->
 
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
@@ -81,19 +81,26 @@
 <script>
   import ShareComponent from './components/ShareComponent.vue'
   import MultimediaComponent from './components/MultimediaComponent.vue'
-  import ClockMultimedia from './components/ClockComponent.vue'
 
   export default {
-    components: { ShareComponent, MultimediaComponent, ClockMultimedia },
+    components: { ShareComponent, MultimediaComponent },
     data () {
       return {
         clipped: false,
         drawer: true,
         fixed: false,
-        items: [{
-          icon: 'bubble_chart',
-          title: 'Inspire'
-        }],
+        items: [
+          {
+            icon: 'bubble_chart',
+            title: 'Home',
+            path: '/'
+          },
+          {
+            icon: 'av_timer',
+            title: 'Clock',
+            path: '/clock'
+          }
+        ],
         miniVariant: false,
         right: true,
         rightDrawer: false,

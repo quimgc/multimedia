@@ -1,11 +1,15 @@
 <template>
-    <div style="border: 9px solid black">
-        12
-    </div>
+   <div>
+        <h1>Aprenent</h1>
+   </div>
 </template>
 
 <style>
-
+    div {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
 </style>
 
 <script>
