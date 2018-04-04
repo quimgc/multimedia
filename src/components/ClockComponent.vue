@@ -4,7 +4,7 @@
    </div>
 </template>
 
-<style>
+<style scoped>
     div {
         display: flex;
         align-content: center;
