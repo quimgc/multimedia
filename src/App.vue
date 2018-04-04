@@ -66,12 +66,13 @@
       </v-list>
 
     </v-navigation-drawer>
+
+    <clock-component></clock-component>
     <multimedia-component></multimedia-component>
 
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
-
     <share-component></share-component>
 
   </v-app>
@@ -80,9 +81,10 @@
 <script>
   import ShareComponent from './components/ShareComponent.vue'
   import MultimediaComponent from './components/MultimediaComponent.vue'
+  import ClockMultimedia from './components/ClockComponent.vue'
 
   export default {
-    components: { ShareComponent, MultimediaComponent },
+    components: { ShareComponent, MultimediaComponent, ClockMultimedia },
     data () {
       return {
         clipped: false,

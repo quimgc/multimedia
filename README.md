@@ -1,3 +1,13 @@
+# TODO
+
+metainformació
+
+webmainfest buscar img.
+posar aquesta mateixa img a les metadades de index.html del paquet multimedaia
+
+512 x 512 -> manifest generator que crea les diferents img.
+
+https://developers.facebook.com/tools/debug/ -> per veure com quedaria la pag. compartida.
 # Link amb visualització correcta
 
 http://acacha.org/mediawiki/Open_Graph#.WqbJSE3Wx-U
