@@ -30,14 +30,14 @@ export default {
     ctx.translate(radius, radius)
     radius = radius * 0.90
     drawClock()
-
+    var fps = 15
     function drawClock () {
       setTimeout(function () {
         window.requestAnimationFrame(drawClock)
         drawFace(ctx, radius)
         drawNumbers(ctx, radius)
         drawTime(ctx, radius)
-      }, 1000 / 60)
+      }, 1000 / fps)
     }
 
     function drawFace (ctx, radius) {
