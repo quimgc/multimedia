@@ -17,7 +17,14 @@ http://acacha.org/mediawiki/Open_Graph#.WqbJSE3Wx-U
 S'ha d'afegir una sèrie de <meta> al fitxer index.html (header) per a que al compartir un enllaç aparegui més informació.
 
 
-
+  function drawClock () {
+      setTimeout(function () {
+        window.requestAnimationFrame(drawClock)
+        drawFace(ctx, radius)
+        drawNumbers(ctx, radius)
+        drawTime(ctx, radius)
+      }, 1000 / fps)
+    }
 ## GITHUB PAGES
 
 TODO: config/index.js configurar perquè sinó apareix error a github pages. buscar info. (google vuecli github pages)-> search on google
