@@ -23,23 +23,36 @@ export default {
     }
   },
   mounted () {
-    console.log('Mounted ok')
     var canvas = document.getElementById('canvas')
     var ctx = canvas.getContext('2d')
     var radius = canvas.height / 2
     ctx.translate(radius, radius)
     radius = radius * 0.90
-    drawClock()
-    var fps = 15
-    function drawClock () {
-      setTimeout(function () {
-        window.requestAnimationFrame(drawClock)
-        drawFace(ctx, radius)
-        drawNumbers(ctx, radius)
-        drawTime(ctx, radius)
-      }, 1000 / fps)
-    }
+    let worker;
 
+    drawClock()
+    //    function drawClock () {
+    //      setTimeout(function () {
+    //        window.requestAnimationFrame(drawClock)
+    //        drawFace(ctx, radius)
+    //        drawNumbers(ctx, radius)
+    //        drawTime(ctx, radius)
+    //      }, 1000 / fps)
+    //    }
+
+    function drawClock () {
+      if(typeof(Worker) !== "undefined") {
+        if(typeof(worker) == "undefined") {
+          worker = new Worker("../workers/timer.js");
+        }
+        worker.onmessage = function(event) {
+          window.requestAnimationFrame(drawClock)
+          drawFace(ctx, radius)
+          drawNumbers(ctx, radius)
+          drawTime(ctx, radius)
+        };
+
+    }
     function drawFace (ctx, radius) {
       var grad
 
