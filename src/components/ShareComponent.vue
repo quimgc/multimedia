@@ -77,7 +77,7 @@ export default {
     share () {
       navigator.share({
         title: 'My awesome post!',
-        text: 'This post may or may not contain the answer to the universe',
+        text: 'Pàgina multimèdia de Quim González Colat',
         url: window.location.href
       }).then(() => {
         console.log('Thanks for sharing!')
