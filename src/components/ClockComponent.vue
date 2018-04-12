@@ -36,7 +36,7 @@ export default {
     } else {
       console.log('Aquest navegador no suporta document.hidden')
     }
-    document.addEventListener(visibilityChange, drawClock, false)
+    document.addEventListener(visibilityChange, iniciRellotge, false)
     let w
 
     var canvas = document.getElementById('canvas')
@@ -44,24 +44,28 @@ export default {
     var radius = canvas.height / 2
     ctx.translate(radius, radius)
     radius = radius * 0.90
-    //    let fps = 15
 
-    if (typeof (Worker) !== 'undefined') {
-      if (typeof (w) === 'undefined') {
-        w = new Worker('static/workers/timer.js')
-      }
-      w.onmessage = function (event) {
-        drawClock()
+    //    let fps = 15
+    //  inicialment, s'ha de cridar a la funció iniciRellotge, ja que sinó no ens apareixerà el rellotge fins que no canviessim de pantalla i tornessim a multimedia/clock.
+    iniciRellotge()
+
+    function iniciRellotge () {
+      if (!document.hidden) {
+        if (typeof (Worker) !== 'undefined') {
+          if (typeof (w) === 'undefined') {
+            w = new Worker('static/workers/timer.js')
+          }
+          w.onmessage = function (event) {
+            drawClock()
+          }
+        }
       }
     }
-
     function drawClock () {
-      if (!document.hidden) {
-        window.requestAnimationFrame(drawClock)
-        drawFace(ctx, radius)
-        drawNumbers(ctx, radius)
-        drawTime(ctx, radius)
-      }
+      window.requestAnimationFrame(drawClock)
+      drawFace(ctx, radius)
+      drawNumbers(ctx, radius)
+      drawTime(ctx, radius)
     }
 
     function drawFace (ctx, radius) {
