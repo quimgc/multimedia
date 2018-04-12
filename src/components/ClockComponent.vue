@@ -57,7 +57,7 @@ export default {
 
     function drawClock () {
       if (!document.hidden) {
-         window.requestAnimationFrame(drawClock)
+        window.requestAnimationFrame(drawClock)
         drawFace(ctx, radius)
         drawNumbers(ctx, radius)
         drawTime(ctx, radius)
