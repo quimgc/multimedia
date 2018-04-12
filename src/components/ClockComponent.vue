@@ -23,6 +23,20 @@ export default {
     }
   },
   mounted () {
+    var visibilityChange
+    //    Aquests if serveix per si s'utitliza els diferents navegadors, per veure si ho suporta i poder aplicar la funció per pintar el rellotge.
+    if (typeof document.hidden !== 'undefined') {
+      visibilityChange = 'visibilitychange'
+    } else if (typeof document.mozHidden !== 'undefined') {
+      visibilityChange = 'mozvisibilitychange'
+    } else if (typeof document.msHidden !== 'undefined') {
+      visibilityChange = 'msvisibilitychange'
+    } else if (typeof document.webkitHidden !== 'undefined') {
+      visibilityChange = 'webkitvisibilitychange'
+    } else {
+      console.log('Aquest navegador no suporta document.hidden')
+    }
+    document.addEventListener(visibilityChange, drawClock, false)
     let w
 
     var canvas = document.getElementById('canvas')
@@ -31,7 +45,6 @@ export default {
     ctx.translate(radius, radius)
     radius = radius * 0.90
     //    let fps = 15
-    drawClock()
 
     if (typeof (Worker) !== 'undefined') {
       if (typeof (w) === 'undefined') {
@@ -43,10 +56,12 @@ export default {
     }
 
     function drawClock () {
-      window.requestAnimationFrame(drawClock)
-      drawFace(ctx, radius)
-      drawNumbers(ctx, radius)
-      drawTime(ctx, radius)
+      if (!document.hidden) {
+         window.requestAnimationFrame(drawClock)
+        drawFace(ctx, radius)
+        drawNumbers(ctx, radius)
+        drawTime(ctx, radius)
+      }
     }
 
     function drawFace (ctx, radius) {
