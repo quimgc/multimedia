@@ -99,6 +99,11 @@
             icon: 'av_timer',
             title: 'Clock',
             path: '/clock'
+          },
+          {
+            icon: 'videogame_asset',
+            title: 'Game',
+            path: '/game'
           }
         ],
         miniVariant: false,

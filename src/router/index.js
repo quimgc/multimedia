@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import ClockComponent from '@/components/ClockComponent'
 Vue.use(Router)
+
+const HelloWorld = () => import('@/components/HelloWorld')
+const ClockComponent = () => import('@/components/ClockComponent')
+const GameComponent = () => import('@/components/GameComponent')
 
 export default new Router({
   routes: [
@@ -15,6 +17,11 @@ export default new Router({
       path: '/clock',
       name: 'ClockComponent',
       component: ClockComponent
+    },
+    {
+      path: '/game',
+      name: 'GameComponent',
+      component: GameComponent
     }
   ]
 })
