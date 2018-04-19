@@ -5,6 +5,8 @@ import HelloWorld from '@/components/HelloWorld'
 import ClockComponent from '@/components/ClockComponent'
 
 Vue.use(Router)
+
+// no em funciona el lazy loading no sé perquè.
 // const HelloWorld = () => import('@/components/HelloWorld')
 // const ClockComponent = () => import('@/components/ClockComponent')
 // const GameComponent = () => import('@/components/GameComponent')

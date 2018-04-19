@@ -1,6 +1,10 @@
 <template>
     <v-app>
     <v-container>
+        <v-switch @click="soundMuted()"
+                :label="`Mute: ${mute.toString()}`"
+                v-model="mute"
+        ></v-switch>
         <div id="game"></div>
         <v-layout>
             <div style="text-align:center;width:480px;">
@@ -9,7 +13,7 @@
                 <v-btn @mousedown="moveright()" @mouseup="clearmove()" @touchstart="moveright()">RIGHT</v-btn><br><br>
                 <v-btn @mousedown="movedown()" @mouseup="clearmove()" @touchstart="movedown()">DOWN</v-btn>
             </div>
-            <!--<v-btn @mouseup="btnReset()" color="warning">RESTART</v-btn>-->
+            <v-btn v-if="youLost" @mouseup="btnReset()" color="warning">RESTART</v-btn>
         </v-layout>
     </v-container>
     </v-app>
@@ -23,6 +27,7 @@ export default {
       myGameArea: {
         canvas: document.createElement('canvas'),
         start: function () {
+          this.youLost = false
           this.canvas.width = 480
           this.canvas.height = 270
           this.context = this.canvas.getContext('2d')
@@ -38,15 +43,18 @@ export default {
       },
       myGamePiece: '',
       myObstacles: [],
-      myScore: ''
+      myScore: '',
+      youLost: false,
+      music: new Audio('./static/sound/1.mp3'),
+      mute: false
     }
   },
   methods: {
     startGame () {
+      this.music.play()
       this.myGameArea.start()
       this.myGamePiece = new this.Component(30, 30, 'blue', 10, 120, this.myGameArea.context)
       this.myScore = new this.Component('30px', 'Consolas', 'black', 280, 40, this.myGameArea.context, 'text')
-      setInterval(this.updateGameArea, 20)
     },
     Component (width, height, color, x, y, ctx, type) {
       this.type = type
@@ -91,6 +99,9 @@ export default {
       for (var i = 0; i < this.myObstacles.length; i += 1) {
         if (this.myGamePiece.crashWith(this.myObstacles[i])) {
           this.myGameArea.stop()
+          this.youLost = true
+          this.music.load()
+          x = height = gap = minHeight = maxHeight = minGap = maxGap = ''
           return
         }
       }
@@ -119,11 +130,14 @@ export default {
     },
     btnReset () {
       clearInterval(this.updateGameArea)
+      this.youLost = false
+      this.myGameArea.stop()
       this.myGameArea.clear()
       this.myGamePiece = ''
+      this.myGameArea.frameNo = 1
       this.myObstacles = []
       this.myScore = ''
-      this.myGameArea.stop()
+      this.everyinterval(0)
       this.startGame()
     },
     everyinterval (n) {
@@ -145,10 +159,15 @@ export default {
     clearmove () {
       this.myGamePiece.speedX = 0
       this.myGamePiece.speedY = 0
+    },
+    soundMuted () {
+      this.music.muted = !this.music.muted
+      this.mute = !this.mute
     }
   },
   mounted () {
     this.startGame()
+    setInterval(this.updateGameArea, 20)
   }
 }
 </script>
