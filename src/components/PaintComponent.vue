@@ -63,7 +63,6 @@
             colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'orangered']
             mycolor = colors[Math.floor(Math.random() * colors.length)]
             lines = {x: event.pageX - offset.left, y: event.pageY - offset.top, color: mycolor}
-            console.log(lines[0])
             event.preventDefault()
           },
           drawClick: function (event) {
@@ -104,7 +103,6 @@
       }
     },
     mounted () {
-      console.log('Mounted ok')
       this.CanvasDrawr({id: 'example', size: 15})
     }
 }
