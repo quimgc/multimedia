@@ -104,6 +104,11 @@
             icon: 'videogame_asset',
             title: 'Game',
             path: '/game'
+          },
+          {
+            icon: 'create',
+            title: 'Paint',
+            path: '/paint'
           }
         ],
         miniVariant: false,

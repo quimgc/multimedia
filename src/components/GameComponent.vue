@@ -137,6 +137,7 @@ export default {
       this.myGameArea.frameNo = 1
       this.myObstacles = []
       this.myScore = ''
+      this.music.load()
       this.everyinterval(0)
       this.startGame()
     },
