@@ -8,7 +8,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // no em funciona el lazy loading no sé perquè.
-const HelloWorld = () => "System.import('@/components/HelloWorld')"
+const HelloWorld = () => import('@/components/HelloWorld')
 const ClockComponent = () => import('@/components/ClockComponent')
 const GameComponent = () => import('@/components/GameComponent')
 
