@@ -1,8 +1,11 @@
 <template>
-    <div id="content">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <canvas id="example" height=450 width=300></canvas>
-    </div>
+    <v-container>
+            <div id="content">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <canvas id="example" height=450 width=300></canvas>
+            </div>
+    </v-container>
+
 </template>
 <style media="screen">canvas{border:1px solid #ccc}</style>
 <script>
@@ -24,7 +27,6 @@
           ctxt.lineCap = options.lineCap || 'round'
           ctxt.pX = undefined
           ctxt.pY = undefined
-          //          lines = [ , , ]
           lines = []
           offset = $(canvas).offset()
           self = {init: function () {
